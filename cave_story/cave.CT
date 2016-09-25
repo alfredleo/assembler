@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="18">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"God mode"</Description>
+      <LastState Activated="0"/>
+      <Color>80000008</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+
+originalcode:
+nop
+nop
+mov [Doukutsu.exe+9E6CC],cx
+
+exit:
+jmp returnhere
+
+"Doukutsu.exe"+19978:
+jmp newmem
+nop
+nop
+nop
+nop
+returnhere:
+
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"Doukutsu.exe"+19978:
+sub ecx,eax
+mov [Doukutsu.exe+9E6CC],cx
+//Alt: db 2B C8 66 89 0D CC E6 49 00
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Change of sub ecx,eax</Description>
+      <Address>00419978</Address>
+      <ModuleName>Doukutsu.exe</ModuleName>
+      <ModuleNameOffset>19978</ModuleNameOffset>
+      <Before>
+        <Byte>0D</Byte>
+        <Byte>CC</Byte>
+        <Byte>E6</Byte>
+        <Byte>49</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>2B</Byte>
+        <Byte>C8</Byte>
+      </Actual>
+      <After>
+        <Byte>66</Byte>
+        <Byte>89</Byte>
+        <Byte>0D</Byte>
+        <Byte>CC</Byte>
+        <Byte>E6</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>
