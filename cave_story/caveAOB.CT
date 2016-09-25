@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="18">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"God mode with AOB scan"</Description>
+      <LastState Activated="0"/>
+      <Color>80000008</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+aobscan(nodamage, 2B C8 66 89 0D CC E6 49 00 8B 15 50 E6)
+label(_nodamage)
+registersymbol(_nodamage)
+
+nodamage:
+_nodamage:
+db 90 90
+
+[DISABLE]
+_nodamage:
+db 2B C8
+
+unregistersymbol(_nodamage)
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Change of sub ecx,eax</Description>
+      <Address>00419978</Address>
+      <ModuleName>Doukutsu.exe</ModuleName>
+      <ModuleNameOffset>19978</ModuleNameOffset>
+      <Before>
+        <Byte>0D</Byte>
+        <Byte>CC</Byte>
+        <Byte>E6</Byte>
+        <Byte>49</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>2B</Byte>
+        <Byte>C8</Byte>
+      </Actual>
+      <After>
+        <Byte>66</Byte>
+        <Byte>89</Byte>
+        <Byte>0D</Byte>
+        <Byte>CC</Byte>
+        <Byte>E6</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>
