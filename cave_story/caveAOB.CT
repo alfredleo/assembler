@@ -8,11 +8,11 @@
       <Color>80000008</Color>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>[ENABLE]
-aobscan(nodamage, 2B C8 66 89 0D CC E6 49 00 8B 15 50 E6)
+aobscan(nodamage, 0F BF 45 08 0F BF 0D ?? ?? ?? ?? 2B C8 66 89 0D CC E6 49 00)
 label(_nodamage)
 registersymbol(_nodamage)
 
-nodamage:
+nodamage+B:
 _nodamage:
 db 90 90
 
@@ -22,6 +22,14 @@ db 2B C8
 
 unregistersymbol(_nodamage)
 </AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"No description"</Description>
+      <LastState Value="1" Activated="0" RealAddress="0049E6CC"/>
+      <Color>80000008</Color>
+      <VariableType>4 Bytes</VariableType>
+      <Address>Doukutsu.exe+9E6CC</Address>
     </CheatEntry>
   </CheatEntries>
   <CheatCodes>
