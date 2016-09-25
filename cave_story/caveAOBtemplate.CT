@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="18">
+  <Forms>
+    <UDF1 Class="TCEForm" Encoding="Ascii85">@JZXR2nldAU:MM2b.}cxWeIh0Gi32eO*FuxWMuP5%{mcIVgA6t9Fkwa6v7(wnNpI$=7,zGoLEqjnV-i7R=Z%lS*7?algi1!000</UDF1>
+  </Forms>
+  <CheatEntries>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"No description"</Description>
+      <LastState Value="1" Activated="0" RealAddress="0049E6CC"/>
+      <Color>80000008</Color>
+      <VariableType>4 Bytes</VariableType>
+      <Address>Doukutsu.exe+9E6CC</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"AOB injection template, god mode"</Description>
+      <LastState Activated="0"/>
+      <Color>80000008</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Doukutsu.exe
+  Version:
+  Author : Geforce
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+
+aobscanmodule(groundtype,Doukutsu.exe,2B C8 66 89 0D CC E6 49 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  //sub ecx,eax
+  mov [Doukutsu.exe+9E6CC],cx
+  jmp return
+
+groundtype:
+  jmp code
+  nop
+  nop
+  nop
+  nop
+return:
+registersymbol(groundtype)
+
+[DISABLE]
+
+groundtype:
+  db 2B C8 66 89 0D CC E6 49 00
+
+unregistersymbol(groundtype)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "Doukutsu.exe"+19978
+
+"Doukutsu.exe"+19941: 0F B6 15 38 E6 49 00           -  movzx edx,byte ptr [Doukutsu.exe+9E638]
+"Doukutsu.exe"+19948: 83 E2 FE                       -  and edx,-02
+"Doukutsu.exe"+1994B: 88 15 38 E6 49 00              -  mov [Doukutsu.exe+9E638],dl
+"Doukutsu.exe"+19951: C6 05 C8 E6 49 00 80           -  mov byte ptr [Doukutsu.exe+9E6C8],-80
+"Doukutsu.exe"+19958: 83 3D 4C E6 49 00 01           -  cmp dword ptr [Doukutsu.exe+9E64C],01
+"Doukutsu.exe"+1995F: 75 02                          -  jne Doukutsu.exe+19963
+"Doukutsu.exe"+19961: EB 0A                          -  jmp Doukutsu.exe+1996D
+"Doukutsu.exe"+19963: C7 05 70 E6 49 00 00 FC FF FF  -  mov [Doukutsu.exe+9E670],FFFFFC00
+"Doukutsu.exe"+1996D: 0F BF 45 08                    -  movsx eax,word ptr [ebp+08]
+"Doukutsu.exe"+19971: 0F BF 0D CC E6 49 00           -  movsx ecx,word ptr [Doukutsu.exe+9E6CC]
+// ---------- INJECTING HERE ----------
+"Doukutsu.exe"+19978: 2B C8                          -  sub ecx,eax
+"Doukutsu.exe"+1997A: 66 89 0D CC E6 49 00           -  mov [Doukutsu.exe+9E6CC],cx
+// ---------- DONE INJECTING  ----------
+"Doukutsu.exe"+19981: 8B 15 50 E6 49 00              -  mov edx,[Doukutsu.exe+9E650]
+"Doukutsu.exe"+19987: 81 E2 80 00 00 00              -  and edx,00000080
+"Doukutsu.exe"+1998D: 74 1C                          -  je Doukutsu.exe+199AB
+"Doukutsu.exe"+1998F: 0F BF 05 CE E6 49 00           -  movsx eax,word ptr [Doukutsu.exe+9E6CE]
+"Doukutsu.exe"+19996: 85 C0                          -  test eax,eax
+"Doukutsu.exe"+19998: 7E 11                          -  jle Doukutsu.exe+199AB
+"Doukutsu.exe"+1999A: 0F BF 0D CE E6 49 00           -  movsx ecx,word ptr [Doukutsu.exe+9E6CE]
+"Doukutsu.exe"+199A1: 83 E9 01                       -  sub ecx,01
+"Doukutsu.exe"+199A4: 66 89 0D CE E6 49 00           -  mov [Doukutsu.exe+9E6CE],cx
+"Doukutsu.exe"+199AB: 8B 15 50 E6 49 00              -  mov edx,[Doukutsu.exe+9E650]
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Change of sub ecx,eax</Description>
+      <Address>00419978</Address>
+      <ModuleName>Doukutsu.exe</ModuleName>
+      <ModuleNameOffset>19978</ModuleNameOffset>
+      <Before>
+        <Byte>0D</Byte>
+        <Byte>CC</Byte>
+        <Byte>E6</Byte>
+        <Byte>49</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>2B</Byte>
+        <Byte>C8</Byte>
+      </Actual>
+      <After>
+        <Byte>66</Byte>
+        <Byte>89</Byte>
+        <Byte>0D</Byte>
+        <Byte>CC</Byte>
+        <Byte>E6</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>
